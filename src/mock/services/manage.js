@@ -18,9 +18,9 @@ const serverList = (options) => {
     result.push({
       key: tmpKey,
       id: tmpKey,
-      no: 'No ' + tmpKey,
+      no: '测试人员' + tmpKey,
       description: '这是一段描述',
-      callNo: Mock.mock('@integer(1, 999)'),
+      callNo:'测试项目',
       status: Mock.mock('@integer(0, 3)'),
       updatedAt: Mock.mock('@datetime'),
       editable: false

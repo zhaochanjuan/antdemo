@@ -6,17 +6,17 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="项目名称">
-                <a-input  placeholder="" />
+                <a-input placeholder="" />
               </a-form-item>
             </a-col>
-             <a-col :md="8" :sm="24">
+            <a-col :md="8" :sm="24">
               <a-form-item label="账号名">
-                <a-input  placeholder="" />
+                <a-input placeholder="" />
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="科室">
-                <a-select  placeholder="请选择" default-value="0">
+                <a-select placeholder="请选择">
                   <a-select-option value="0">测试科室1</a-select-option>
                   <a-select-option value="1">测试科室2</a-select-option>
                   <a-select-option value="2">测试科室3</a-select-option>
@@ -25,7 +25,7 @@
             </a-col>
             <a-col :md="8" :sm="24">
               <a-form-item label="导出时间">
-                <a-date-picker  style="width: 100%" placeholder="请输入更新日期" />
+                <a-date-picker style="width: 100%" placeholder="请输入更新日期" />
               </a-form-item>
             </a-col>
             <template v-if="advanced">
@@ -36,7 +36,7 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="描述">
-                  <a-input-number  style="width: 100%" />
+                  <a-input-number style="width: 100%" />
                 </a-form-item>
               </a-col>
             </template>
@@ -62,63 +62,68 @@
 <script>
 const columns = [
   {
-    title: '导出时间',
-    dataIndex: 'address',
-    key: 'address 1',
-    ellipsis: true,
+    title: '序号',
+    dataIndex: 'index',
+    key: 'address 4',
+    width: 100,
   },
   {
-    title: 'Name',
+    title: '导出时间',
+    dataIndex: 'time',
+    key: 'address 1',
+    ellipsis: true,
+    width:250,
+  },
+  {
+    title: '账户名',
     dataIndex: 'name',
     key: 'name',
     scopedSlots: { customRender: 'name' },
+    width:200,
   },
   {
-    title: 'Age',
+    title: '科室',
     dataIndex: 'age',
     key: 'age',
-    width: 80,
+    width: 200,
   },
   {
-    title: 'Long Column Long Column Long Column',
-    dataIndex: 'address',
+    title: '项目',
+    dataIndex: 'project',
     key: 'address 2',
     ellipsis: true,
   },
   {
-    title: 'Long Column Long Column',
-    dataIndex: 'address',
+    title: '导出字段',
+    dataIndex: 'key',
     key: 'address 3',
-    ellipsis: true,
-  },
-  {
-    title: 'Long Column',
-    dataIndex: 'address',
-    key: 'address 4',
     ellipsis: true,
   },
 ]
 const data = [
   {
-    key: '1',
+    index: '1',
     name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park, New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    age: "口腔科",
+    time: '2018-11-28 22:14:37',
+    key: '测试字段1',
+    project: '测试项目1',
   },
   {
-    key: '2',
+    index: '2',
     name: 'Jim Green',
-    age: 42,
-    address: 'London No. 2 Lake Park, London No. 2 Lake Park',
-    tags: ['loser'],
+    age: "内分泌科",
+    time: '2019-11-28 22:14:37',
+    key: '测试字段2',
+    project: '测试项目2',
   },
   {
-    key: '3',
+    index: '3',
     name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park, Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
+    age: "耳鼻喉科",
+    time: '2020-11-28 22:14:37',
+    key: '测试字段3',
+    project: '测试项目3',
   },
 ]
 

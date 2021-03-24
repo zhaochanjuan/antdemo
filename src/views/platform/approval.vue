@@ -5,46 +5,33 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
-              <a-form-item label="规则编号">
+              <a-form-item label="数据名称">
                 <a-input v-model="queryParam.id" placeholder=""/>
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
-              <a-form-item label="使用状态">
+              <a-form-item label="审批状态">
                 <a-select v-model="queryParam.status" placeholder="请选择" default-value="0">
-                  <a-select-option value="0">全部</a-select-option>
-                  <a-select-option value="1">关闭</a-select-option>
-                  <a-select-option value="2">运行中</a-select-option>
+                  <a-select-option value="0">未通过</a-select-option>
+                  <a-select-option value="1">未审核</a-select-option>
+                  <a-select-option value="2">已通过</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
-            <template v-if="advanced">
-              <a-col :md="8" :sm="24">
-                <a-form-item label="调用次数">
-                  <a-input-number v-model="queryParam.callNo" style="width: 100%"/>
-                </a-form-item>
-              </a-col>
-              <a-col :md="8" :sm="24">
+            <a-col :md="8" :sm="24">
                 <a-form-item label="更新日期">
                   <a-date-picker v-model="queryParam.date" style="width: 100%" placeholder="请输入更新日期"/>
                 </a-form-item>
               </a-col>
+            <template v-if="advanced">
               <a-col :md="8" :sm="24">
-                <a-form-item label="使用状态">
-                  <a-select v-model="queryParam.useStatus" placeholder="请选择" default-value="0">
-                    <a-select-option value="0">全部</a-select-option>
-                    <a-select-option value="1">关闭</a-select-option>
-                    <a-select-option value="2">运行中</a-select-option>
-                  </a-select>
+                <a-form-item label="申请人员">
+                 <a-input placeholder=""/>
                 </a-form-item>
               </a-col>
-              <a-col :md="8" :sm="24">
-                <a-form-item label="使用状态">
-                  <a-select placeholder="请选择" default-value="0">
-                    <a-select-option value="0">全部</a-select-option>
-                    <a-select-option value="1">关闭</a-select-option>
-                    <a-select-option value="2">运行中</a-select-option>
-                  </a-select>
+                 <a-col :md="8" :sm="24">
+                <a-form-item label="描述">
+                  <a-input-number v-model="queryParam.callNo" style="width: 100%"/>
                 </a-form-item>
               </a-col>
             </template>
@@ -82,7 +69,6 @@
         rowKey="key"
         :columns="columns"
         :data="loadData"
-        :alert="true"
         :rowSelection="rowSelection"
         showPagination="auto"
       >
@@ -93,7 +79,7 @@
           <a-badge :status="text | statusTypeFilter" :text="text | statusFilter" />
         </span>
         <span slot="description" slot-scope="text">
-          <ellipsis :length="4" tooltip>{{ text }}</ellipsis>
+          <ellipsis :length="20" tooltip>{{ text }}</ellipsis>
         </span>
 
         <span slot="action" slot-scope="text, record">
@@ -128,11 +114,11 @@ import CreateForm from './modules/CreateForm'
 
 const columns = [
   {
-    title: '#',
+    title: '序号',
     scopedSlots: { customRender: 'serial' }
   },
   {
-    title: '规则编号',
+    title: '申请人',
     dataIndex: 'no'
   },
   {
@@ -141,14 +127,11 @@ const columns = [
     scopedSlots: { customRender: 'description' }
   },
   {
-    title: '服务调用次数',
-    dataIndex: 'callNo',
-    sorter: true,
-    needTotal: true,
-    customRender: (text) => text + ' 次'
+    title: '申请项目',
+    dataIndex: 'callNo'
   },
   {
-    title: '状态',
+    title: '审批状态',
     dataIndex: 'status',
     scopedSlots: { customRender: 'status' }
   },
@@ -296,9 +279,9 @@ export default {
     },
     handleSub (record) {
       if (record.status !== 0) {
-        this.$message.info(`${record.no} 订阅成功`)
+        this.$message.info(`${record.no} 审批成功`)
       } else {
-        this.$message.error(`${record.no} 订阅失败，规则已关闭`)
+        this.$message.error(`${record.no} 审批失败，规则已关闭`)
       }
     },
     onSelectChange (selectedRowKeys, selectedRows) {
