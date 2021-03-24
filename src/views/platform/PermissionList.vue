@@ -229,9 +229,9 @@ export default {
           { label: '查询', value: 'get', defaultChecked: false },
           { label: '修改', value: 'update', defaultChecked: false },
           { label: '列表', value: 'query', defaultChecked: false },
-          { label: '删除', value: 'delete', defaultChecked: false },
-          { label: '导入', value: 'import', defaultChecked: false },
+          { label: '患者筛选', value: 'search', defaultChecked: false },
           { label: '导出', value: 'export', defaultChecked: false }
+          
         ]
         setTimeout(resolve(data), 1500)
       }).then(res => {
