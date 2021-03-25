@@ -33,8 +33,8 @@
               </span>
             </a-col>
             <a-col :md="6" :sm="24">
-              <a-button type="primary" @click="$refs.table.refresh(true)"><a-icon type="eye" />预览</a-button>
-              <a-button type="primary" @click="$refs.table.refresh(true)" style="margin-left: 8px"><a-icon type="printer" />导出/打印</a-button>
+              <a-button type="primary" @click="yl()"><a-icon type="eye" />预览</a-button>
+            
             </a-col>
           </a-row>
         </a-form>
@@ -203,6 +203,11 @@ export default {
       }
     },
   },
+  methods:{
+    yl(){
+       this.$router.push({name:'table'})
+    }
+  }
 }
 </script>
 <style>

@@ -23,7 +23,7 @@ export default {
   menu: {
     locale: true
   },
-  title: '临床数据采集平台',
+  title: '科研数据管理平台',
   pwa: false,
   iconfontUrl: '',
   production: process.env.NODE_ENV === 'production' && process.env.VUE_APP_PREVIEW !== 'true'

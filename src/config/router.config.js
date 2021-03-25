@@ -13,11 +13,11 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: 'menu.home' },
-    redirect: '/dashboard/workplace',
-    hidden: true,
+    redirect: '/platform/statistics',
     children: [
       // dashboard
       {
+        hidden: true,
         path: '/dashboard',
         name: 'dashboard',
         redirect: '/dashboard/workplace',
@@ -50,7 +50,7 @@ export const asyncRouterMap = [
         path: '/form',
         redirect: '/form/base-form',
         component: RouteView,
-        // hidden: true,
+        hidden: true,
         meta: { title: 'menu.form', icon: 'form', permission: ['form'] },
         children: [
           {
@@ -341,40 +341,7 @@ export const asyncRouterMap = [
       //   ]
       // },
       // 我们自己的
-      {
-        path: '/data',
-        name: 'data',
-        component: RouteView,
-        meta: { title: '数据管理', icon: 'table', permission: ['dashboard'] },
-        redirect: '/dataManagement/index',
-        children: [
-          {
-            path: '/dataManagement/index',
-            name: 'dataManagement',
-            component: () => import('@/views/dataManagement/index'),
-            meta: { title: '数据分析', keepAlive: true, permission: ['dashboard'] }
-          }, {
-            path: '/dataManagement/table',
-            name: 'table',
-            component: () => import('@/views/dataManagement/table'),
-            meta: { title: '数据分析2', keepAlive: true, permission: ['dashboard'] }
-          },
-        ]
-      }, {
-        path: '/setting',
-        name: 'setting',
-        component: RouteView,
-        meta: { title: '系统设置', icon: bxAnaalyse, permission: ['dashboard'] },
-        redirect: '/dataManagement/index',
-        children: [
-          {
-            path: '/systemSettings/index',
-            name: 'systemSettings',
-            component: () => import('@/views/systemSettings/index'),
-            meta: { title: '研究指标规则', keepAlive: true, permission: ['dashboard'] }
-          }
-        ]
-      },
+     
       {
         path: '/platform',
         name: 'platformPage',
@@ -413,19 +380,53 @@ export const asyncRouterMap = [
             component: () => import('@/views/platform/projectlist'),
             meta: { title: '项目情况', keepAlive: true }
           },
+          // {
+          //   path: '/platform/user-list',
+          //   name: 'UserList',
+          //   component: () => import('@/views/platform/UserList'),
+          //   meta: { title: '帐号管理', keepAlive: true }
+          // }, {
+          //   path: '/platform/permission-list',
+          //   name: 'PermissionList',
+          //   component: () => import('@/views/platform/PermissionList'),
+          //   meta: { title: '权限管理', keepAlive: true }
+          // }
+        ]
+      },{
+        path: '/data',
+        name: 'data',
+        component: RouteView,
+        meta: { title: '数据管理', icon: 'table', permission: ['dashboard'] },
+        redirect: '/dataManagement/index',
+        children: [
           {
-            path: '/platform/user-list',
-            name: 'UserList',
-            component: () => import('@/views/platform/UserList'),
-            meta: { title: '帐号管理', keepAlive: true }
+            path: '/dataManagement/index',
+            name: 'dataManagement',
+            component: () => import('@/views/dataManagement/index'),
+            meta: { title: '数据分析', keepAlive: true, permission: ['dashboard'] }
           }, {
-            path: '/platform/permission-list',
-            name: 'PermissionList',
-            component: () => import('@/views/platform/PermissionList'),
-            meta: { title: '权限管理', keepAlive: true }
+            path: '/dataManagement/table',
+            name: 'table',
+             hidden: true,
+            component: () => import('@/views/dataManagement/table'),
+            meta: { title: '数据分析2', keepAlive: true, permission: ['dashboard'] }
+          },
+        ]
+      }, {
+        path: '/setting',
+        name: 'setting',
+        component: RouteView,
+        meta: { title: '系统设置', icon: bxAnaalyse, permission: ['dashboard'] },
+        redirect: '/dataManagement/index',
+        children: [
+          {
+            path: '/systemSettings/index',
+            name: 'systemSettings',
+            component: () => import('@/views/systemSettings/index'),
+            meta: { title: '研究指标规则', keepAlive: true, permission: ['dashboard'] }
           }
         ]
-      }
+      },
     ]
   },
   {

@@ -1,32 +1,23 @@
 <template>
-  <div class="table" id="pdfDom">
-    <div class="top">
-      <p>国家食品药品监督管理总局批件号：NA<br />方案号：XM-001<br />版本号： 版本日期：2021-2-20<br /></p>
-      <p class="topitem">方案题目<br />测试项目</p>
-      <p class="toptitle" @click="downLoad()">原始病历</p>
-      <ul class="person_msg">
-        <li>受试者姓名：测试1</li>
-        <li>姓 名 缩 写：CS</li>
-        <li>筛 选 号：K001</li>
-        <li>入 选 号：001</li>
-      </ul>
-      <p class="topfrom">
-        试验开始日期：2020年09月26日<br />试验完成日期：2020年10月26日<br />研究机构：xx大学第一医院I期临床试验研究室<br />申办单位：我是申办方
-      </p>
+  <div>
+    <div class="onload"><a-button type="primary" @click="downLoad()" style="margin-left: 8px"><a-icon type="printer" />导出/打印</a-button></div>
+    <div class="table" id="pdfDom">
+      <p class="tiptitle" style="margin-top: 0px">人口学资料及其他信息</p>
+      <a-table bordered :data-source="data2" :showHeader="false" :columns="columns2" :pagination="false"> </a-table>
+      <p class="tiptitle">知情宣教</p>
+      <a-table bordered :data-source="data3" :showHeader="false" :columns="columns3" :pagination="false"> </a-table>
+      <p class="tiptitle">知情同意书</p>
+      <a-table bordered :data-source="data1" :showHeader="false" :columns="columns" :pagination="false">
+        <span slot="age" slot-scope="age">
+          <a-radio-group v-model="value1">
+            <a-radio :style="radioStyle" :value="1">是</a-radio>
+            <a-radio :style="radioStyle" :value="2">否</a-radio>
+          </a-radio-group>
+        </span>
+      </a-table>
+      <p class="tiptitle">筛选特殊筛查</p>
+      <a-table bordered :data-source="data4" :columns="columns4" :pagination="false"> </a-table>
     </div>
-    <p class="tiptitle">知情同意书</p>
-    <a-table bordered :data-source="data1" :showHeader="false" :columns="columns" :pagination="false">
-      <span slot="age" slot-scope="age">
-        <a-radio-group v-model="value1">
-          <a-radio :style="radioStyle" :value="1">是</a-radio>
-          <a-radio :style="radioStyle" :value="2">否</a-radio>
-        </a-radio-group>
-      </span>
-    </a-table>
-    <p class="tiptitle">一般状况</p>
-    <a-table bordered :data-source="data2" :showHeader="false" :columns="columns2" :pagination="false"> </a-table>
-    <p class="tiptitle">人口学资料及其他信息</p>
-    <a-table bordered :data-source="data3" :showHeader="false" :columns="columns3" :pagination="false"> </a-table>
   </div>
 </template>
 
@@ -112,26 +103,84 @@ const data2 = [
     key: 2,
     name: '记录者：管理员',
   },
+  {
+    key: 2,
+    name: '民族：汉',
+  },
 ]
 const columns3 = [
   {
     title: 'Name',
     dataIndex: 'name',
   },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-  },
 ]
 const data3 = [
   {
-    age: '民族：汉',
-    name: '种族：亚裔',
+    name: '宣教内容：',
+  },
+  {
+    name: '提问与答疑：无',
+  },
+  {
+    name: '宣教时间：2020-2-18',
+  },
+  {
+    name: '研究者：管理员',
+  },
+]
+const columns4 = [
+  {
+    title: '序号',
+    dataIndex: 'index',
+  },
+  {
+    title: '检测项目',
+    dataIndex: 'item',
+  },
+  {
+    title: '检测时间',
+    dataIndex: 'time',
+  },
+  {
+    title: '检测结果',
+    dataIndex: 'result',
+  },
+  {
+    title: '检测人',
+    dataIndex: 'person',
+  },
+  {
+    title: '核对人',
+    dataIndex: 'person2',
+  },
+  {
+    title: '异常备注',
+    dataIndex: 'error',
+  },
+]
+const data4 = [
+  {
+    index: 1,
+    item: '烟检',
+    person: '李四',
+    time: '2020-9-21 09:26',
+    result: '阴性',
+    person2: '张三',
+    error: '无',
+  },
+  {
+    index: 2,
+    item: '药筛',
+    person: '李四',
+    time: '2020-9-21 09:36',
+    result: '阴性',
+    person2: '张三',
+    error: '无',
   },
 ]
 export default {
   data() {
-    return { columns, data1, value1: 1, columns2, data2, columns3, data3, fileName: '数据导出文件' }
+    return { columns, data1, value1: 1, columns2, data2, columns3, data3, fileName:'测试数据', columns4, data4 }
   },
   methods: {
     downLoad() {
@@ -143,10 +192,15 @@ export default {
 <style scoped>
 .table {
   padding: 30px;
-  width:1000px;
+  width: 1000px;
   margin: 0 auto;
   background: #fff;
   color: #000;
+}
+.onload{
+  width: 1000px;
+  margin: 30px auto;
+  text-align: right;
 }
 .topitem {
   text-align: center;
