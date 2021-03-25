@@ -71,6 +71,12 @@
 <script>
 const columns = [
   {
+    title: '序号',
+    dataIndex: 'key',
+    key: 'key',
+    width: 80,
+  },
+  {
     title: '登录时间',
     dataIndex: 'time',
     key: 'time',

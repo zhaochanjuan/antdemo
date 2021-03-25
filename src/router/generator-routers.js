@@ -62,7 +62,7 @@ const constantRouterComponents = {
 
 
 
-  // 我们自己的
+  // 平台管理
   'statistics': () => import('@/views/platform/statistics'),
   'Approval': () => import('@/views/platform/approval'),
   'Exportlist': () => import('@/views/platform/exportlist'),
@@ -71,6 +71,14 @@ const constantRouterComponents = {
   'Searchlist': () => import('@/views/platform/searchlist'),
   'PermissionList': () => import('@/views/platform/PermissionList'),
   // 'TestWork': () => import(/* webpackChunkName: "TestWork" */ '@/views/dashboard/TestWork')
+
+  //数据管理
+  'dataManagement': () => import('@/views/dataManagement/index'),
+  'datatable': () => import('@/views/dataManagement/table'),
+  //系统设置
+  'systemSettings': () => import('@/views/systemSettings/index'),
+  
+
 }
 
 // 前端未找到页面路由（固定不用改）

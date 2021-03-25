@@ -14,6 +14,7 @@ export const asyncRouterMap = [
     component: BasicLayout,
     meta: { title: 'menu.home' },
     redirect: '/dashboard/workplace',
+    hidden: true,
     children: [
       // dashboard
       {
@@ -49,7 +50,7 @@ export const asyncRouterMap = [
         path: '/form',
         redirect: '/form/base-form',
         component: RouteView,
-        hidden: true,
+        // hidden: true,
         meta: { title: 'menu.form', icon: 'form', permission: ['form'] },
         children: [
           {
@@ -76,7 +77,7 @@ export const asyncRouterMap = [
       {
         path: '/list',
         name: 'list',
-        // hidden: true,
+        hidden: true,
         component: RouteView,
         redirect: '/list/table-list',
         meta: { title: 'menu.list', icon: 'table', permission: ['table'] },
@@ -336,10 +337,44 @@ export const asyncRouterMap = [
       //       meta: { title: '权限列表', keepAlive: true }
       //     }
       //   ]
-      // }
+      // } 
       //   ]
       // },
       // 我们自己的
+      {
+        path: '/data',
+        name: 'data',
+        component: RouteView,
+        meta: { title: '数据管理', icon: 'table', permission: ['dashboard'] },
+        redirect: '/dataManagement/index',
+        children: [
+          {
+            path: '/dataManagement/index',
+            name: 'dataManagement',
+            component: () => import('@/views/dataManagement/index'),
+            meta: { title: '数据分析', keepAlive: true, permission: ['dashboard'] }
+          }, {
+            path: '/dataManagement/table',
+            name: 'table',
+            component: () => import('@/views/dataManagement/table'),
+            meta: { title: '数据分析2', keepAlive: true, permission: ['dashboard'] }
+          },
+        ]
+      }, {
+        path: '/setting',
+        name: 'setting',
+        component: RouteView,
+        meta: { title: '系统设置', icon: bxAnaalyse, permission: ['dashboard'] },
+        redirect: '/dataManagement/index',
+        children: [
+          {
+            path: '/systemSettings/index',
+            name: 'systemSettings',
+            component: () => import('@/views/systemSettings/index'),
+            meta: { title: '研究指标规则', keepAlive: true, permission: ['dashboard'] }
+          }
+        ]
+      },
       {
         path: '/platform',
         name: 'platformPage',
